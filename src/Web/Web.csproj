@@ -65,6 +65,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonInfo.cs">
+      <Link>Properties\CommonInfo.cs</Link>
+    </Compile>
     <Compile Include="Configuration.cs" />
     <Compile Include="Handlers\HomeHandler.cs" />
     <Compile Include="Handlers\NewSurveyHandler.cs" />
@@ -79,6 +82,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\HomeView.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{1A2399E1-F5B0-4B38-90AE-E879E9FBCFD2}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistence.NHibernate\Persistence.NHibernate.csproj">
+      <Project>{1AAEE419-40FE-44AE-8AF2-EAECAEF45872}</Project>
+      <Name>Persistence.NHibernate</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="..\..\wraps\openwrap\build\OpenWrap.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
