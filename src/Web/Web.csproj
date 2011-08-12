@@ -53,6 +53,8 @@
   <ItemGroup>
     <Content Include="Content\style.css" />
     <Content Include="default.aspx" />
+    <Content Include="Views\AddSurvey.aspx" />
+    <Content Include="Views\ShowSurvey.aspx" />
     <Content Include="Views\HomeView.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -65,10 +67,16 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Handlers\HomeHandler.cs" />
+    <Compile Include="Handlers\NewSurveyHandler.cs" />
+    <Compile Include="Handlers\SurveyHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\HomeResource.cs" />
+    <Compile Include="Resources\NewSurveyResource.cs" />
+    <Compile Include="Resources\SurveyResource.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Survey.Master" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\HomeView.Master" />
   </ItemGroup>
