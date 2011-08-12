@@ -65,6 +65,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonInfo.cs">
+      <Link>Properties\CommonInfo.cs</Link>
+    </Compile>
     <Compile Include="Configuration.cs" />
     <Compile Include="Handlers\HomeHandler.cs" />
     <Compile Include="Handlers\NewSurveyHandler.cs" />
