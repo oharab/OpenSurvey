@@ -52,7 +52,7 @@
         private IWindsorContainer ConfigureContainer()
         {
             container = new WindsorContainer();
-
+            
             return container;
         }
 
