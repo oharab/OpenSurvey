@@ -4,10 +4,12 @@
     using OpenRasta.Configuration;
     using OpenSurvey.Web.Resources;
     using OpenSurvey.Web.Handlers;
+    using Castle.Windsor;
+    using OpenRasta.DI;
+    using OpenRasta.DI.Windsor;
 
-    public class Configuration:IConfigurationSource
+    public class Configuration : IConfigurationSource, IDependencyResolverAccessor
     {
-        
         public void Configure()
         {
             using (OpenRastaConfiguration.Manual)
@@ -34,6 +36,29 @@
                         index="~/Views/ShowSurvey.aspx"
                     });
             }
+        }
+
+        IWindsorContainer container;
+        public IWindsorContainer Container
+        {
+            get
+            {
+                if (container == null)
+                    container = ConfigureContainer();
+                return container;
+            }
+        }
+
+        private IWindsorContainer ConfigureContainer()
+        {
+            container = new WindsorContainer();
+
+            return container;
+        }
+
+        public IDependencyResolver Resolver
+        {
+            get { return new WindsorDependencyResolver(Container); }
         }
     }
 }
