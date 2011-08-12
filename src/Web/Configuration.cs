@@ -7,6 +7,7 @@
 
     public class Configuration:IConfigurationSource
     {
+        
         public void Configure()
         {
             using (OpenRastaConfiguration.Manual)
