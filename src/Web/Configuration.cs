@@ -7,6 +7,8 @@
     using Castle.Windsor;
     using OpenRasta.DI;
     using OpenRasta.DI.Windsor;
+    using OpenSurvey.Persistence.NHibernate.Configuration;
+    using Castle.MicroKernel.Registration;
 
     public class Configuration : IConfigurationSource, IDependencyResolverAccessor
     {
@@ -29,7 +31,7 @@
                     
                 ResourceSpace.Has
                     .ResourcesOfType<SurveyResource>()
-                    .AtUri("/survey/{title}")
+                    .AtUri("/survey/{id}")
                     .HandledBy<SurveyHandler>()
                     .RenderedByAspx(new
                     {
@@ -51,7 +53,13 @@
 
         private IWindsorContainer ConfigureContainer()
         {
-            container = new WindsorContainer();
+            container = new WindsorContainer()
+                        .Install(new NHibernateInstaller())
+                        .Register(AllTypes.FromThisAssembly()
+                                .Where(t=>t.Namespace.EndsWith(".Resources"))
+                                )
+                                    
+                        ;
             
             return container;
         }

@@ -8,6 +8,7 @@
     using FluentNHibernate.Automapping;
     using OpenSurvey.Core.Model;
     using Castle.Core.Configuration;
+    using global::NHibernate.Tool.hbm2ddl;
 
 
     public class FluentConfigurationBuilder : IConfigurationBuilder
@@ -28,11 +29,18 @@
                         AutoMap.AssemblyOf<Survey>()
                     )
                 )
+                .ExposeConfiguration(buildSchema)
                 .BuildSessionFactory();
             return configuration;
         }
 
+        private void buildSchema(global::NHibernate.Cfg.Configuration cfg)
+        {
+            new SchemaExport(cfg)
+                .Create(false, true);
+        }
 
 
+        
     }
 }

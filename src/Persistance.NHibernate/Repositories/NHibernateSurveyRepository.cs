@@ -36,14 +36,16 @@
         }
 
 
-        public void SaveSurvey(Survey s)
+        public Survey Create(string name, string title, string description)
         {
             using (ISession session = sessionManager.OpenSession())
             {
                 using (session.BeginTransaction())
                 {
+                    var s = new Survey { Name = name, Title = title, Description = description };
                     session.SaveOrUpdate(s);
                     session.Transaction.Commit();
+                    return s;
                 }
             }
         }

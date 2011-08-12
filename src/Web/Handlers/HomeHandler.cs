@@ -5,9 +5,15 @@ using OpenSurvey.Web.Resources;
 
     public class HomeHandler
     {
+        HomeResource home;
+        public HomeHandler(HomeResource home)
+        {
+            this.home = home;
+        }
+
         public HomeResource Get()
         {
-            return new HomeResource();
+            return home;
         }
     }
 }
