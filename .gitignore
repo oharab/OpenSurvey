@@ -72,3 +72,4 @@ Backup/
 UpgradeLog.XML
 *~
 *.swp
+MySQLite.db
