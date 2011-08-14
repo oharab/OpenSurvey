@@ -8,11 +8,13 @@
     using OpenSurvey.Core.Model;
     using Castle.Facilities.NHibernateIntegration;
     using global::NHibernate;
-    
+    using Castle.Services.Transaction;
+
 
     public class NHibernateSurveyRepository : ISurveyRepository
     {
         private readonly ISessionManager sessionManager;
+
         public NHibernateSurveyRepository(ISessionManager sessionManager)
         {
             this.sessionManager = sessionManager;
@@ -22,9 +24,11 @@
         {
             using (ISession session = sessionManager.OpenSession())
             {
+
                 return session.CreateCriteria<Survey>()
                     .List<Survey>();
             }
+
         }
 
         public Survey GetSurvey(int id)
@@ -39,14 +43,22 @@
         public Survey Create(string name, string title, string description)
         {
             using (ISession session = sessionManager.OpenSession())
+            using (var t=session.BeginTransaction())
             {
-                using (session.BeginTransaction())
-                {
-                    var s = new Survey { Name = name, Title = title, Description = description };
-                    session.SaveOrUpdate(s);
-                    session.Transaction.Commit();
-                    return s;
-                }
+                var s = new Survey { Name = name, Title = title, Description = description };
+                session.SaveOrUpdate(s);
+                t.Commit();
+                return s;
+            }
+        }
+
+        public void Update(Survey survey)
+        {
+            using (ISession session = sessionManager.OpenSession())
+            using(var t=session.BeginTransaction())
+            {
+                session.SaveOrUpdate(survey);
+                t.Commit();
             }
         }
     }

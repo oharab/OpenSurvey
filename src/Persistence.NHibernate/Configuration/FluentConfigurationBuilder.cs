@@ -15,7 +15,6 @@
     {
         public global::NHibernate.Cfg.Configuration GetConfiguration(IConfiguration config)
         {
-
             var defaultConfigurationBuilder = new DefaultConfigurationBuilder();
             var configuration = defaultConfigurationBuilder.GetConfiguration(config);
             Fluently.Configure(configuration)
@@ -23,6 +22,7 @@
                     SQLiteConfiguration
                         .Standard
                         .ConnectionString(c => c.FromConnectionStringWithKey("OpenSurveyConnectionString"))
+                        .ShowSql()
                 )
                 .Mappings(
                     m => m.AutoMappings.Add(

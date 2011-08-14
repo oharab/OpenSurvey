@@ -4,18 +4,16 @@
     using OpenRasta.Configuration;
     using OpenSurvey.Web.Resources;
     using OpenSurvey.Web.Handlers;
-    using Castle.Windsor;
-    using OpenRasta.DI;
-    using OpenRasta.DI.Windsor;
-    using OpenSurvey.Persistence.NHibernate.Configuration;
-    using Castle.MicroKernel.Registration;
+    using OpenRasta.Web.UriDecorators;
+    
 
-    public class Configuration : IConfigurationSource, IDependencyResolverAccessor
+    public class Configuration : IConfigurationSource
     {
         public void Configure()
         {
             using (OpenRastaConfiguration.Manual)
             {
+                ResourceSpace.Uses.UriDecorator<HttpMethodOverrideUriDecorator>();
                 ResourceSpace.Has
                     .ResourcesOfType<HomeResource>()
                     .AtUri("/home")
@@ -28,45 +26,18 @@
                     .AtUri("/survey/new")
                     .HandledBy<NewSurveyHandler>()
                     .RenderedByAspx("~/Views/AddSurvey.aspx");
-                    
+
                 ResourceSpace.Has
                     .ResourcesOfType<SurveyResource>()
                     .AtUri("/survey/{id}")
+                    .And.AtUri("/survey/{id}/edit").Named("edit")
                     .HandledBy<SurveyHandler>()
                     .RenderedByAspx(new
                     {
-                        index="~/Views/ShowSurvey.aspx"
+                        index = "~/Views/ShowSurvey.aspx",
+                        edit = "~/Views/EditSurvey.aspx"
                     });
             }
-        }
-
-        IWindsorContainer container;
-        public IWindsorContainer Container
-        {
-            get
-            {
-                if (container == null)
-                    container = ConfigureContainer();
-                return container;
-            }
-        }
-
-        private IWindsorContainer ConfigureContainer()
-        {
-            container = new WindsorContainer()
-                        .Install(new NHibernateInstaller())
-                        .Register(AllTypes.FromThisAssembly()
-                                .Where(t=>t.Namespace.EndsWith(".Resources"))
-                                )
-                                    
-                        ;
-            
-            return container;
-        }
-
-        public IDependencyResolver Resolver
-        {
-            get { return new WindsorDependencyResolver(Container); }
         }
     }
 }
