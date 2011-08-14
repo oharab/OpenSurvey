@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Facilities.Logging">
+      <HintPath>..\..\libs\Castle.Facilities.NHibernateIntegration\Castle.Facilities.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Services.Logging.Log4netIntegration">
+      <HintPath>..\..\libs\Castle.Facilities.NHibernateIntegration\Castle.Services.Logging.Log4netIntegration.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -53,7 +59,9 @@
   <ItemGroup>
     <Content Include="Content\style.css" />
     <Content Include="default.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Views\AddSurvey.aspx" />
+    <Content Include="Views\EditSurvey.aspx" />
     <Content Include="Views\ShowSurvey.aspx" />
     <Content Include="Views\HomeView.aspx" />
     <Content Include="Web.config" />
@@ -69,6 +77,9 @@
       <Link>Properties\CommonInfo.cs</Link>
     </Compile>
     <Compile Include="Configuration.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\HomeHandler.cs" />
     <Compile Include="Handlers\NewSurveyHandler.cs" />
     <Compile Include="Handlers\SurveyHandler.cs" />

@@ -9,5 +9,6 @@ using System.Collections.Generic;
         Survey GetSurvey(int Id);
         IList<Survey> ListSurveys();
         Survey Create(string name, string title, string description);
+        void Update(Survey survey);
     }
 }
