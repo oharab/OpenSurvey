@@ -18,11 +18,11 @@
             return new NewSurveyResource();
         }
 
-        public OperationResult.SeeOther Post(NewSurveyResource resource)
+        public OperationResult Post(NewSurveyResource resource)
         {
             var s = repository.Create(resource.Name, resource.Title, resource.Description);
             var r = new SurveyResource { Id = s.Id, Name = s.Name, Title = s.Title, Description = s.Description };
-            return new OperationResult.SeeOther { RedirectLocation = r.CreateUri("edit") };
+            return new OperationResult.SeeOther {RedirectLocation=r.CreateUri("edit") }; 
         }
     }
 }

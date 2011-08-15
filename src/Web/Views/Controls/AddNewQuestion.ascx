@@ -1,0 +1,3 @@
+﻿<%@ Control Language="C#" Inherits="ResourceSubView<NewQuestionResource>" %>
+
+NewQuestion....

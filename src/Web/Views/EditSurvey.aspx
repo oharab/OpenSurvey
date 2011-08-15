@@ -23,13 +23,10 @@
         <% }
            } %>
            
-
-           <% using (
-            scope(Xhtml.Form<QuestionResource>().Method("post")))
-              {
-            %>
-                <input type="text" name="QuestionText" />
-                <input type="submit" value="Add" />
-            <%} %>
+           Add new Question:
+      <%= new NewQuestionResource { SurveyID = Resource.Id }.CreateUri()%>     
+      
+      <% Xhtml.RenderResource(new NewQuestionResource { SurveyID = Resource.Id }.CreateUri()); %>
+          
     </div>
 </asp:Content>

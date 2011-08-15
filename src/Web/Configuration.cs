@@ -29,10 +29,10 @@
                     .RenderedByAspx("~/Views/AddSurvey.aspx");
 
                 ResourceSpace.Has
-                    .ResourcesOfType<QuestionResource>()
-                    .AtUri("/survey/{id}/questions")
+                    .ResourcesOfType<NewQuestionResource>()
+                    .AtUri("/survey/{surveyId}/questions")
                     .HandledBy<QuestionHandler>()
-                    
+                    .RenderedByUserControl("~/Views/Controls/AddNewQuestion.ascx")
                     ;
 
                 ResourceSpace.Has

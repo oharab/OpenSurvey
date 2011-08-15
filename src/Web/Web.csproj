@@ -61,6 +61,7 @@
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\AddSurvey.aspx" />
+    <Content Include="Views\Controls\AddNewQuestion.ascx" />
     <Content Include="Views\EditSurvey.aspx" />
     <Content Include="Views\ShowSurvey.aspx" />
     <Content Include="Views\HomeView.aspx" />
@@ -86,6 +87,7 @@
     <Compile Include="Handlers\SurveyHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\HomeResource.cs" />
+    <Compile Include="Resources\NewQuestionResource.cs" />
     <Compile Include="Resources\NewSurveyResource.cs" />
     <Compile Include="Resources\QuestionResource.cs" />
     <Compile Include="Resources\SurveyResource.cs" />
