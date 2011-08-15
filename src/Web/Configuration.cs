@@ -21,11 +21,19 @@
                     .HandledBy<HomeHandler>()
                     .RenderedByAspx("~/Views/HomeView.aspx")
                     ;
+
                 ResourceSpace.Has
                     .ResourcesOfType<NewSurveyResource>()
                     .AtUri("/survey/new")
                     .HandledBy<NewSurveyHandler>()
                     .RenderedByAspx("~/Views/AddSurvey.aspx");
+
+                ResourceSpace.Has
+                    .ResourcesOfType<QuestionResource>()
+                    .AtUri("/survey/{id}/questions")
+                    .HandledBy<QuestionHandler>()
+                    
+                    ;
 
                 ResourceSpace.Has
                     .ResourcesOfType<SurveyResource>()

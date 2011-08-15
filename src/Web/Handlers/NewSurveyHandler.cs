@@ -22,7 +22,7 @@
         {
             var s = repository.Create(resource.Name, resource.Title, resource.Description);
             var r = new SurveyResource { Id = s.Id, Name = s.Name, Title = s.Title, Description = s.Description };
-            return new OperationResult.SeeOther { RedirectLocation = r.CreateUri() };
+            return new OperationResult.SeeOther { RedirectLocation = r.CreateUri("edit") };
         }
     }
 }

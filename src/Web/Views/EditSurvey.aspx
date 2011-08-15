@@ -18,8 +18,18 @@
         <input type="text" name="Name" value="<%= Resource.Name %>" />
         <input type="text" name="Title" value="<%= Resource.Title %>" />
         <textarea name="Description" rows="4" cols="10"><%= Resource.Description %></textarea>
-        <input type="submit" value="Save" /> <a href="<%= Resource.CreateUri() %>">Cancel</a>
+        <input type="submit" value="Save" />
+        <a href="<%= Resource.CreateUri() %>">Cancel</a>
         <% }
-            } %>
+           } %>
+           
+
+           <% using (
+            scope(Xhtml.Form<QuestionResource>().Method("post")))
+              {
+            %>
+                <input type="text" name="QuestionText" />
+                <input type="submit" value="Add" />
+            <%} %>
     </div>
 </asp:Content>

@@ -33,5 +33,10 @@
             return new OperationResult.SeeOther { RedirectLocation = resource.CreateUri() };
         }
 
+        public OperationResult Post(QuestionResource questionResource)
+        {
+            return new OperationResult.NotFound();
+        }
+
     }
 }

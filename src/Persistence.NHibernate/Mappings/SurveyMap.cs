@@ -18,6 +18,7 @@
                 .Not.Nullable();
             Map(x => x.Description)
                 .Not.Nullable();
+            HasMany<Question>(x=>x.Questions);
         }
     }
 }
