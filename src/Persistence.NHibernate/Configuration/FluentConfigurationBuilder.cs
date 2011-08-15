@@ -9,6 +9,8 @@
     using OpenSurvey.Core.Model;
     using Castle.Core.Configuration;
     using global::NHibernate.Tool.hbm2ddl;
+    using OpenSurvey.Persistence.NHibernate.Mappings;
+    using System.Reflection;
 
 
     public class FluentConfigurationBuilder : IConfigurationBuilder
@@ -25,9 +27,7 @@
                         .ShowSql()
                 )
                 .Mappings(
-                    m => m.AutoMappings.Add(
-                        AutoMap.AssemblyOf<Survey>()
-                    )
+                    m =>m.FluentMappings.AddFromAssemblyOf<SurveyMap>()
                 )
                 .ExposeConfiguration(buildSchema)
                 .BuildSessionFactory();
@@ -37,7 +37,7 @@
         private void buildSchema(global::NHibernate.Cfg.Configuration cfg)
         {
             new SchemaExport(cfg)
-                .Create(false, true);
+                .Create(true, true);
         }
 
 

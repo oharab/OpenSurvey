@@ -17,7 +17,7 @@
             .Register(
                 Component.For<ISurveyRepository>()
                     .ImplementedBy<NHibernateSurveyRepository>()
-                    .LifeStyle.PerWebRequest
+                    .LifeStyle.Transient
             )
             ;
         }
